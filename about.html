@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<!-- 必须的 meta 标签 -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap 的 CSS 文件 -->
+		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+
+		<title>智能屋</title>
+		<link rel="stylesheet" href="./css/iconfont.css">
+
+		<style>
+			/* 遮罩层样式 */
+			#over {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background-color: RGB(166, 162, 162, 0.3);
+				display: none;
+			}
+
+			/* 登录界面样式 */
+			#over div {
+				width: auto;
+				height: auto;
+				margin-top: 300px;
+				/* background-image: url(./img/bg.jpg); */
+				background-color: #e3f2fd;
+				position: absolute;
+				z-index: 60;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: 10px;
+				padding: 15px 25px;
+			}
+
+			#over div a {
+				padding: 20px 80px;
+			}
+
+			#over div table {
+				border-collapse: collapse;
+				width: 100%;
+			}
+
+			#over div table td {
+				padding: 10px 0px;
+			}
+
+			#over div table tr td:first-of-type {
+				font-size: .8em;
+				padding-right: 10px;
+			}
+
+			#over div table tr td:last-of-type input {
+				height: 25px;
+			}
+
+			#over div table tr:last-of-type td {
+				text-align: center;
+				padding-left: 35px;
+			}
+
+			#over div table tr:last-of-type td input {
+				padding: 0px 10px;
+				margin-right: 30px;
+				border-radius: 5px;
+				font-size: .7em;
+				/* border: 1px solid #ccc; */
+				cursor: pointer;
+			}
+
+			
+
+			/* 底端样式 */
+			.dbottom {
+
+				width: 100%;
+				text-align: center;
+				color: #007BFF;
+				background-color: #e3f2fd;
+			}
+/* 注册样式 */
+			* {
+				magin: 0px;
+				padding: 0px;
+				box-sizing: border-box;
+			}
+
+			#rg_layout {
+				margin: auto;
+				margin-top: 100px;
+
+				display: none;
+				width: auto;
+				height: auto;
+				/* background-image: url(./img/bg.jpg); */
+				background-color: #e3f2fd;
+				position: absolute;
+				top: 30%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: 10px;
+				padding: 15px 25px;
+				z-index: 60;
+			}
+
+			.rg_left {
+
+				float: left;
+				margin: 15px
+			}
+
+			.rg_center {
+
+				float: left;
+				wigth: 450px;
+			}
+
+			.rg_right {
+				float: right;
+				margin: 15px;
+			}
+
+			.rg_left>p {
+				color: #007BFF;
+				font-size: 20px;
+			}
+
+			.rg_right>p:first-child {
+				font-size: 15px;
+			}
+
+			.td_left {
+				width: 100px;
+				text-align: right;
+				height: 45px;
+			}
+
+			.td_right {
+				padding-left: 50px;
+
+			}
+
+			#username,
+			#password,
+			#email,
+			#tel,
+			#name,
+			#birthday,
+			#checkcode {
+
+				width: 251px;
+				height: 32px;
+				border: 1px solid #A6A6A6;
+				/*设置边框圆角*/
+				border-radius: 5px;
+				padding-left: 10px;
+			}
+
+			#checkcode {
+				width: 110px;
+			}
+
+			#btn_sub {
+				width: 150px;
+				height: 40px;
+				border-radius: 5px;
+				/* background-color: #ccc;
+				border: 1px solid #ccc; */
+			}
+
+			#cancel_sub {
+				width: 150px;
+				height: 40px;
+				border-radius: 5px;
+				/* background-color: #ccc;
+				border: 1px solid #ccc; */
+			}
+
+			/* 导航条 */
+			#t {
+
+				width: 100%;
+				position: fixed;
+				margin-bottom: 20px;
+				z-index: 55;
+				top: 0;
+			}
+
+			#t2 {
+
+				margin-bottom: 10px;
+				margin-right: 20px;
+			}
+
+			#t3 {
+				position: absolute;
+				margin-left: 50px;
+			}
+
+			#t4 {
+				margin-left: 60px;
+			}
+
+			/* 图片位置 */
+			#img-location {
+				margin-top: 50px;
+			}
+
+			/* 图标模块 */
+			#icon {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+
+			#icon-1 {
+				margin-right: 100px;
+			}
+
+			#icon-1 .a1 {
+				text-align: center;
+				cursor: pointer;
+				/* 在0.6s内完成属性变化 */
+				transition: all 0.6s;
+			}
+
+			#icon-1 .a1:hover {
+				/* 鼠标放到图标上的时候图标按比例放大1.4倍 */
+				transform: scale(1.4);
+			}
+
+			.nav {
+				background-color: rgba(10, 10, 10, 0.4);
+				width: 100%;
+				height: 60px;
+				text-align: center;
+				display: flex;
+				flex-direction: inherit;
+				justify-content: center;
+				margin-top: 20px;
+
+			}
+
+			.nav a {
+				padding: 20px;
+				text-decoration: none;
+				color: black;
+			}
+
+			.nav a:hover {
+				padding: 20px;
+				text-decoration: none;
+				color: rgb(26, 140, 247);
+			}
+
+			.card {
+
+				width: 100%;
+				height: 1080px;
+				border-bottom: 1px black solid;
+				scroll-behavior: smooth;
+			}
+
+			#card1 {
+				background-image: url("./img/a_br.jpg");
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+			}
+
+			#card1 .card-top:hover{
+				 transform: scale(1.2); 
+				
+			}
+			#card2 {
+				height: 700px;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+
+			}
+
+			/* 关于我们--公司介绍的文字介绍 */
+			#card2 .div1 {
+
+				background-color: rgb(230, 225, 225);
+				width: 700px;
+				height: 400px;
+				box-shadow: black 1px 1px 10px;
+				margin-right: 60px;
+				z-index: 2;
+				transition-duration: 1s;
+			}
+			/* 关于我们--公司介绍的特效 */
+			#card2 .div1:hover {
+				margin-right: -60px;
+			}
+			/* 关于我们--公司介绍的图片 */
+			#card2 .div2 {
+				background-color: rgb(207, 154, 154);
+				width: 714px;
+				height: 460px;
+				background-image: url(./img/1520325815322738.jpg);
+
+			}
+			/* 关于我们的每个分内容标题格式 */
+			.card-top {
+
+				font-size: 40px;
+				width: 100%;
+				text-align: center;
+			}
+			/* 底部署名条 */
+			.footer {
+				background-color: rgba(10, 10, 10, 0.4);
+				width: 100%;
+				height: 25px;
+				text-align: center;
+
+			}
+
+			#card3 {
+				background: #1b1b1b;
+				height: 400px;
+			}
+
+			#card3 div span {
+				height: 50px;
+			}
+
+			#card4 {
+				color: white;
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background-image: url(./img/a7.jpg);
+				height: 900px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 导航条 -->
+		<div id="t">
+			<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd; height: 50px;">
+				<div id="t2" class="nav-item "><span class="iconfont icon-zhinengjiaju"></span>
+				</div>
+				<span id="t3">
+					<font size="4" face="microsoft yahei" color="#007BFF">智能屋</font>
+				</span>
+
+				<div class="collapse navbar-collapse" id="navbarColor03">
+					<ul class="navbar-nav mr-auto" id="t4">
+						<li>
+							<a class=" nav-link " href="first.html">首页</a>
+						</li>
+						<li class="nav-item ">
+							<a class="nav-link" href="second.html">智能设备管理
+								<!-- <span class="sr-only">(current)</span> -->
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="style.html">主题场景</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="fourth.html">技术答疑</a>
+						</li>
+						<li class="nav-item">
+							<a class="navbar-brand active" href="about.html">关于我们</a>
+						</li>
+					</ul>
+					
+				</div>
+			</nav>
+		</div>
+<!-- 注册界面 -->
+		<div id="rg_layout">
+			<div class="rg_left">
+				<p><span class="iconfont icon-zhinengjiaju"></span>
+					<font color="#007BFF">智能屋</font>
+				</p>
+
+			</div>
+			<div class="rg_center">
+				<div class="rg_form">
+					<!--定义表单-->
+					<div>
+						<table>
+							<tr>
+								<td class="td_left">
+									<lable>用户名</lable>
+								</td>
+								<td class="td_right"><input type="text" name="username" id="username"
+										placeholder="请输入用户名"></td>
+							</tr>
+							<tr>
+								<td class="td_left">
+									<lable for="password">密码</lable>
+								</td>
+								<td class="td_right"><input type="password" name="password" id="password"
+										placeholder="请输入密码"></td>
+							</tr>
+							<tr>
+								<td class="td_left">
+									<lable for="email">Email</lable>
+								</td>
+								<td class="td_right"><input type="email" name="email" id="email" placeholder="请输入Email">
+								</td>
+							</tr>
+							<tr>
+								<td class="td_left">
+									<lable for="name">姓名</lable>
+								</td>
+								<td class="td_right"><input type="text" name="name" id="name" placeholder="请输入姓名"></td>
+							</tr>
+							<tr>
+								<td class="td_left">
+									<lable for="tel">手机号</lable>
+								</td>
+								<td class="td_right"><input type="text" name="tel" id="tel" placeholder="请输入手机号"></td>
+							</tr>
+							<tr>
+								<td class="td_left">
+									<lable for="gender">性别</lable>
+								</td>
+								<td class="td_right"><input type="radio" name="genderm" value="male">男
+									<input type="radio" name="genderw" value="female">女
+								</td>
+							</tr>
+							<tr>
+								<td class="td_left">
+									<lable for="birthday">出生日期</lable>
+								</td>
+								<td class="td_right"><input type="date" name="birthday" id="birthday"
+										placeholder="请输入出生日期"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" align="center">
+									<input class="btn btn-outline-info" type="submit" id="cancel_sub" value="取消"
+										onclick="closeOver()" />
+									<input class="btn btn-outline-info" type="submit" id="btn_sub" value="注册"
+										onclick="checkto()">
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<!-- 底端 -->
+		<div class="dbottom">
+			<div class="m">物联网 智能屋-智能家居　　<a style="color:#000000;" target="_blank">杜欣怡 林哲 周诗娴</a></div>
+		</div>
+		<!-- 关于我们 -->
+		<div class="nav">
+			<a href="#card1">品牌介绍 </a>
+			<a href="#card2">公司介绍 </a>
+			<a href="#card3">加盟合作 </a>
+			<a href="#card4">生态合作 </a>
+			
+		</div>
+		<div class="card" id="card1">
+			<div class="card-top" style="position: absolute; top: 350px;"><p>品牌介绍</p></div>
+			<div class="card-top" style="width: 100%;text-align: center;position: absolute;top: 450px; font-size: 24px;">
+				随着社会经济与科学技术的快速发展</br>人们的生活水平不断的在提高</br>
+				也更加追求便捷，享受生活。</br>
+				"智能屋"这个品牌接合时代需求、应运而生。</br>加入智能科技的房子不在是冷冰冰的钢筋混泥土</br>而是智慧美好的家。</br>
+				<span>智能屋-与万物相联，让生活更加方便</span>
+			</div>
+		</div>
+		<div class="card" id="card2">
+			<div class="div1">
+				<div class="card-top">公司介绍</div>
+				<div style="padding: 30px;margin-top: 10px;width: 700px;  font-size: 20px;">
+					智能屋-专业物联网解决方案，提供WiFi、Bluetooth、ZigBee、射频、红外、4G、LoRa、
+					总线RS485/ModBus,4-20mA、0-5V、0-10V模拟量输入输出等通信模块，以及通信网关主机，android/linux操作系统/人机界面/PC后台/小程序/APP/定制开发。WIFI/蓝牙/人脸识别门禁、人脸监控、
+					人证识别终端、智能门锁、智能水表/电表、停车场车牌识别、充电桩、快递柜、安防等产品与智慧社区/园区/学校/酒店/公寓SaaS系统IOE定制开发。水泵/油泵、/电机/加热/开关/变频等工业类主控板定制开发；开关、摄像头、家电万能遥控、智能锁、电动窗帘、门窗、新风机、灯光照明、小家电、大家电、智能家居类产品代理/加盟/OEM贴牌/定制开发。
+				</div>
+			</div>
+			<div class="div2"> </div>
+		</div>
+		<div class="card" id="card3">
+			<div class="card-top" style="color: white;">加盟合作</div>
+			<div class="card-top" style="color:#fff; font-size: 13px;">多种合作方式任你选， 精诚合作、互利共赢</div>
+			<div class="card-top"
+				style="height: 300px; color: white;font-size: 20px;display: flex;flex-direction: row;justify-content: space-evenly;align-items:center ;">
+				<span>区域代理</span><span>商超加盟</span><span>网络分销</span><span>项目合作</span></div>
+
+		</div>
+		<div class="card" id="card4">
+			<div class="card-top">生态合作</div>
+			<div class="card-top" style="font-size: 24px;">互联网+智能硬件、物与物互通互联、人与物感知交互，完美的产品生态链是客户获得</br>
+				良好体验的保证，聚焦物联网、人工智能，成就客户发展，是智能屋愿景和使命，智能</br>
+				屋一直坚持"开放、合作、共赢"的战略，扎根于物联网云生态的建设中与所有愿意开放</br>
+				合作的厂商紧密合作，为客户提供一站式智能化解决方案和云服务平台，助力传统行业</br>快速转行升级。</div>
+		</div>
+
+		<div class="footer">物联网 智能屋-智能家居　　杜欣怡 林哲 周诗娴</div>
+
+
+		<script>
+			let logIn = function() {
+				let inputs = document.querySelectorAll("#over table input[type=text]");
+				over.style.display = 'block';
+			}
+
+			let closeOver = function() {
+				//创建一个遮罩层
+
+				over.style.display = 'none';
+				rg_layout.style.display = 'none';
+			}
+			let check = function() {
+				var un = document.getElementById("Text1");
+				var pw = document.getElementById("pwd");
+				if (un.value == "" || pw.value == "") {
+					alert("用户名和密码不能为空!");
+					return false;
+				} else {
+					over.style.display = 'none';
+				}
+				// let result = confirm("确定删除?");
+			}
+			let zhuce = function(btnObjto) {
+				let inputs = document.querySelectorAll("#rg_layout table input[type=text]");
+				rg_layout.style.display = 'block';
+				over.style.display = 'block';
+			
+			}
+			let checkto = function() {
+				var un = document.getElementById("username");
+				var pw = document.getElementById("password");
+				var em = document.getElementById("email");
+				var nm = document.getElementById("name");
+				var te = document.getElementById("tel");
+			
+			
+			
+				if (un.value == "" || pw.value == "" || em.value == "" || nm.value == "" || te.value == "") {
+					alert("请把信息补充完整!");
+					return false;
+				} else {
+					over.style.display = 'none';
+					rg_layout.style.display = 'none';
+				}
+				// let result = confirm("确定删除?");
+			}
+		</script>
+
+
+		<!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
+
+		<!-- 选项 1：jQuery 和 Bootstrap 集成包（集成了 Popper） -->
+		<script src="./js/jquery/jquery.slim.min.js"></script>
+		<script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+		<!-- 选项 2：Popper 和 Bootstrap 的 JS 插件各自独立 -->
+		<!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-qtoqgtVysUOibC/YeVgpOyLJpelAT1DHvg98mYHqq8ofXEmNEjaNqOZwnMKxlXCy" crossorigin="anonymous"></script>
+    -->
+	</body>
+</html>

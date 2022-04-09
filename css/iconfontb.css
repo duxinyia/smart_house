@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "iconfontb"; /* Project id  */
+  src: url('iconfontb.ttf?t=1627268239893') format('truetype');
+}
+
+.iconfontb{
+  font-family: "iconfontb" !important;
+  font-size: 50px;
+  font-style: normal;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+.icon-dianfanbao-:before {
+  content: "\e606";
+}
+
+.icon-jingshuiqi:before {
+  content: "\e681";
+}
+
+.icon-deng:before {
+  content: "\eb53";
+}
+
+.icon-saodiji:before {
+  content: "\eb56";
+}
+
+.icon-chuanglian:before {
+  content: "\e639";
+}
+
+.icon-liangyifu:before {
+  content: "\e609";
+}
+
+.icon-mubu:before {
+  content: "\e607";
+}
+
+.icon-yinxiang:before {
+  content: "\e65c";
+}
+
+.icon-touyingyi:before {
+  content: "\e627";
+}
+
+.icon-weibolu:before {
+  content: "\e608";
+}
+
+.icon-dianshi:before {
+  content: "\e615";
+}
+
+.icon-kongtiao:before {
+  content: "\e616";
+}
+
+.icon-yugang:before {
+  content: "\e640";
+}
+
+.icon-chuang:before {
+  content: "\e6ac";
+}
+
+.icon-mensuo:before {
+  content: "\e617";
+}
+
+.icon-jinghuaqi:before {
+  content: "\e618";
+}
+
+.icon-fridge:before {
+  content: "\e673";
+}
+
+.icon-kaiguan:before {
+  content: "\e645";
+}
+
+.icon-reshuiqi:before {
+  content: "\e60a";
+}
+
+.icon-zhinengmaoyan:before {
+  content: "\e605";
+}
+
+.icon-yanwuganyingqi:before {
+  content: "\e60e";
+}
+
+.icon-meiqiganyingqibeifen:before {
+  content: "\e614";
+}
+
+.icon-zhinengyidongyaokongirbeifen:before {
+  content: "\e61b";
+}
+
+.icon-gis-fm-xieshuifa:before {
+  content: "\e62b";
+}
+
+.icon-biaoqiankuozhan_chazhao-103:before {
+  content: "\eade";
+}
+
+.icon-shexiangtou-01:before {
+  content: "\e610";
+}
+
+.icon-tv-box:before {
+  content: "\e92c";
+}
+
+.icon-hongwaichuanganqi:before {
+  content: "\e60b";
+}
+
+.icon-anfangbaojingmian:before {
+  content: "\e68f";
+}
+
+.icon-zhinengdianbiao:before {
+  content: "\e6b9";
+}
+
+.icon-zhinengshuibiao:before {
+  content: "\e6ba";
+}
+
+.icon-ss-dor:before {
+  content: "\e887";
+}
+

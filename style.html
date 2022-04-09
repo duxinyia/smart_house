@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<!-- 必须的 meta 标签 -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap 的 CSS 文件 -->
+		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+
+		<title>智能屋</title>
+		<link rel="stylesheet" href="./css/iconfont.css">
+		<style>
+		   /* 遮罩层样式 */
+			#over {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background-color: RGB(166, 162, 162, 0.3);
+				display: none;
+			}
+           /* 登录界面样式 */
+			#over div {
+				width: auto;
+				height: auto;
+				margin-top: 300px;
+				/* background-image: url(./img/bg.jpg); */
+				background-color: #e3f2fd;
+				position: absolute;
+				z-index: 60;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: 10px;
+				padding: 15px 25px;
+			}
+
+			#over div a {
+				padding: 20px 80px;
+			}
+
+			#over div table {
+				border-collapse: collapse;
+				width: 100%;
+			}
+
+			#over div table td {
+				padding: 10px 0px;
+			}
+
+			#over div table tr td:first-of-type {
+				font-size: .8em;
+				padding-right: 10px;
+			}
+
+			#over div table tr td:last-of-type input {
+				height: 25px;
+			}
+
+			#over div table tr:last-of-type td {
+				text-align: center;
+				padding-left: 35px;
+			}
+
+			#over div table tr:last-of-type td input {
+				padding: 0px 10px;
+				margin-right: 30px;
+				border-radius: 5px;
+				font-size: .7em;
+				/* border: 1px solid #ccc; */
+				cursor: pointer;
+			}
+				/* 底端样式 */
+			.dbottom{
+				
+				width: 100%;
+				text-align: center;
+				color: #007BFF;
+				background-color: #e3f2fd;
+			}
+			/* 导航条 */
+			#t{
+				
+	     		width: 100%;				
+				position: fixed;
+				margin-bottom: 20px;
+				z-index: 55;
+				top: 0;
+			}
+			#t2{
+				
+				margin-bottom: 10px;
+				margin-right: 20px;
+			}
+			#t3{
+				position: absolute;				
+				margin-left: 50px;
+			}
+			#t4{
+				margin-left: 60px;
+			}
+			/* 图片位置 */
+			#img-location{
+				margin-top: 50px;
+			}
+			/* 图标模块 */
+			#icon{
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			#icon-1{
+				margin-right: 100px;
+			}
+			#icon-1 .a1{
+				text-align: center;
+				cursor: pointer;
+				/* 在0.6s内完成属性变化 */
+				transition: all 0.6s;
+			}
+			#icon-1 .a1:hover{
+				/* 鼠标放到图标上的时候图标按比例放大1.4倍 */
+				transform: scale(1.4);				
+			}
+
+			/* 主题样式 */
+			.nav{
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    line-height: 50px;
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+ 
+}
+.btns{
+    padding-top: 15px;
+    padding-left:30px;
+    padding-bottom:15px;
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+    box-sizing: border-box;
+    
+}
+.addstyle{
+    width: 90px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 20px;
+}
+.content-main{
+
+
+}
+
+.card{
+    display: inline-block;
+	margin-left: 2%;
+    width: 30%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	box-sizing: content-box;
+}
+.card-img{
+    width: 100%;
+    height: 300px;
+    margin: auto;
+}
+.card-img2{
+    width: 100%;
+    height: 300px;
+	padding-left: 20%;
+    padding-right: 20%;
+}
+
+.card-text{
+    box-sizing: border-box;
+    /* display: block; */
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    font-size: 24px;
+
+}
+.showSet{
+    position: fixed;
+    font-size: 18px;
+    width: 500px;
+    height: 300px;
+	border-radius: 10px;
+    background-color:#e3f2fd;
+    left:40%;
+    top:30%;
+    float: left;
+    display:none;
+}
+.checkbox{
+    margin-top: 15px;
+}
+.setOption{
+    text-align: center;
+    padding-top: 30px;
+    font-size: 20px;
+
+}
+
+.showSet-btn{
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-direction:row;
+} 
+.showSet-btn button{
+    width: 80px;
+    height: 40px;
+
+}
+
+
+		</style>
+	</head>
+	<body>
+		<!-- 导航条 -->
+		<div id="t">
+		<nav  class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd; height: 50px;">
+			<div id="t2" class="nav-item " ><span class="iconfont icon-zhinengjiaju"></span>
+            </div>				
+			<span id="t3"><font size="4" face="microsoft yahei" color="#007BFF">智能屋</font></span>
+			
+			<div class="collapse navbar-collapse" id="navbarColor03">
+				<ul class="navbar-nav mr-auto" id="t4">
+					<li>
+					<a class="nav-link " href="first.html">首页</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="second.html">智能设备管理
+							<!-- <span class="sr-only">(current)</span> -->
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class=" navbar-brand active" href="style.html">主题场景</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="fourth.html">技术答疑</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="about.html">关于我们</a>
+					</li>
+				</ul>
+            
+			</div>
+		</nav>
+		</div>
+		<div class="nav"><img style="width: 31px;height: 31px; vertical-align:middle" >智能平台/主题场景 
+
+		</div>
+		<div class="content"> 
+			<div class="content-main">
+				<div class="card">
+					<img onclick="setStyle()" src="./img/sleepp.jpg" class="card-img" />
+					<p class="card-text" contenteditable="true">睡眠模式</p>
+				</div>
+				<div class="card">
+					<img onclick="setStyle()" src="./img/tur.jpg" class="card-img" />
+					<p class="card-text" contenteditable="true">旅游模式</p>
+				</div>
+				<div class="card">
+					<img onclick="setStyle()" src="./img/gohom.jpg" class="card-img" />
+					<p class="card-text" contenteditable="true">回家模式</p>
+				</div>
+				<div class="card">
+					<img onclick="setStyle()" src="./img/movi.jpg" class="card-img" />
+					<p class="card-text" contenteditable>电影模式</p>
+				</div>
+				<div class="card">
+					<img onclick="setStyle()" src="./img/saf.jpg" class="card-img" />
+					<p class="card-text" contenteditable>安全模式</p>
+				</div>
+				<div class="card add">
+					<img onclick="addSubject(0)" src="./img/add.png" class="card-img2"/>
+					<p class="card-text ">点击添加主题</p>
+				</div>
+				<div class="card del">
+					<img onclick="addSubject(1)" src="./img/delete (1).png" class="card-img2"/>
+					<p class="card-text ">点击删除主题</p>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- 设置页面 -->
+		<div class="showSet">
+			<div style="border-bottom: #17A2B8 1px solid ; text-align: center; font-size: 25px;" ><font color="#17A2B8" >编辑场景内容</font></div>
+			<div class="setOption">
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能电视</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能微波炉</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能音响</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能窗帘</font></br>
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能空调</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能猫眼</font>&nbsp;&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能猫眼</font>&nbsp;&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能幕布</font>&nbsp;&nbsp;</br>
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">烟雾传感器</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能开关</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能遥控</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能水表</font>&nbsp;</br>
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能水阀</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">净水器</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">智能空调</font>&nbsp;
+				<input type="checkbox" class="checkbox" name="running" checked><font color="#004085">煤气感应器</font>&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+			<div class="showSet-btn">
+				<button class="btn btn-outline-info my-2 my-sm-0" type="submit1" 
+            		style="font-size: 15px;border:1px solid #17A2B8;" onclick="cancel(1)">确定</button>
+				<button class="btn btn-outline-info my-2 my-sm-0" type="submit1" 
+            		style="font-size: 15px;border:1px solid #17A2B8;" onclick="cancel(0)">取消</button>
+			</div>
+		</div>
+		<!-- 修改名字 -->
+		
+	
+       <!-- 底端 -->
+	   <div class="dbottom">
+	     <div class="m">物联网 智能屋-智能家居　　<a  style="color:#000000;" target="_blank">杜欣怡 林哲 周诗娴</a></div>
+	   </div>
+
+
+
+
+		<script>
+			let logIn = function() {
+				let inputs = document.querySelectorAll("#over table input[type=text]");
+				over.style.display = 'block';
+			}
+
+			let closeOver = function() {
+				//创建一个遮罩层
+
+				over.style.display = 'none';
+				rg_layout.style.display = 'none';
+			}
+			
+			
+		
+           
+	function setStyle(){
+        let showset= window.document.getElementsByClassName("showSet")[0];
+        showset.style.cssText=";display:block";
+    }
+
+    function cancel(m){
+        let showset=  document.getElementsByClassName("showSet")[0];
+        showset.style.cssText=";display:none";
+        if(m==1)
+            alert('保存成功')
+
+    }
+	function setname(p){
+
+		p.innerHTML=''
+	}
+
+    function addSubject(vul){
+        let div = document.createElement("div");
+        let content=document.getElementsByClassName("content-main")[0];
+        let addbtn=document.getElementsByClassName("add")[0];
+        let delbtn=document.getElementsByClassName("del")[0];
+        div.className = "card";
+        if(vul==0){
+            content.removeChild(addbtn)
+            content.removeChild(delbtn)
+            content.innerHTML+=`<div class="card">
+                                <img onclick="setStyle()" src="./img/auto.png" class="card-img"/>
+                                <p class="card-text" contenteditable="true" >自定义模式</p>
+                                </div>
+                                <div class="card add">
+                                <img onclick="addSubject(0)" src="./img/add.png" class="card-img2"/>
+                                <p class="card-text">点击添加主题</p>
+                                </div>
+                                <div class="card del">
+                                <img onclick="addSubject(1)" src="./img/delete (1).png" class="card-img2"/>
+                                <p class="card-text ">点击删除主题</p>
+                                </div>`
+           
+            
+        }
+        if(vul==1){
+            if(content.childNodes.length-3>=2){
+                content.removeChild(addbtn)
+                content.removeChild(delbtn)
+                content.removeChild(content.childNodes[content.childNodes.length-3]);
+                content.innerHTML+=`
+                                <div class="card add">
+                                <img onclick="addSubject(0)" src="./img/add.png" class="card-img2"/>
+                                <p class="card-text ">点击添加主题</p>
+                                </div>
+                                <div class="card del">
+                                <img onclick="addSubject(1)" src="./img/delete (1).png" class="card-img2"/>
+                                <p class="card-text ">点击删除主题</p>
+                                </div>`;
+                console.log(content.childNodes); 
+            }
+           
+            
+            
+        }
+    
+       
+
+    }
+		</script>
+
+
+		<!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
+
+		<!-- 选项 1：jQuery 和 Bootstrap 集成包（集成了 Popper） -->
+		<script src="./js/jquery/jquery.slim.min.js"></script>
+		<script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+		<!-- 选项 2：Popper 和 Bootstrap 的 JS 插件各自独立 -->
+		<!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-qtoqgtVysUOibC/YeVgpOyLJpelAT1DHvg98mYHqq8ofXEmNEjaNqOZwnMKxlXCy" crossorigin="anonymous"></script>
+    -->
+	</body>
+</html>
